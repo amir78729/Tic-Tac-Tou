@@ -8,8 +8,8 @@ def print_game_field():
 
 
 def new_game_field():
-    for i in range(9):
-        game_field.append(cell_status[0])
+    for j in range(9):
+        game_field[j] = cell_status[0]
 
 
 def check_if_the_game_is_over():
@@ -32,30 +32,47 @@ def check_if_the_game_is_over():
     return False
 
 
-game_field = []
-new_game_field()
-game_over = False
-player_one_turn = True
-while not game_over:
-    if player_one_turn:
-        print("Player O:\nPlease select a home:(a number between 1 and 9)")
-        choice = input()
-        game_field[int(choice)-1] = cell_status[1]
-        print_game_field()
-        player_one_turn = not player_one_turn
-    else:
-        print("Player X:\nPlease select a home:(a number between 1 and 9)")
-        choice = input()
-        game_field[int(choice)-1] = cell_status[2]
-        print_game_field()
-        player_one_turn = not player_one_turn
-    # now we should check if the game is over or not...
-    if check_if_the_game_is_over():
-        game_over = True
+def new_game():
+    new_game_field()
+    game_over = False
+    player_one_turn = True
+    while not game_over:
+        if player_one_turn:
+            print("Player O:\nPlease select a home:(a number between 1 and 9)")
+            choice = input()
+            game_field[int(choice) - 1] = cell_status[1]
+            print_game_field()
+            player_one_turn = not player_one_turn
+        else:
+            print("Player X:\nPlease select a home:(a number between 1 and 9)")
+            choice = input()
+            game_field[int(choice) - 1] = cell_status[2]
+            print_game_field()
+            player_one_turn = not player_one_turn
+        # now we should check if the game is over or not...
+        if check_if_the_game_is_over():
+            game_over = True
 
-if player_one_turn:
-    print("X wins!")
-else:
-    print("O wins!")
+    if player_one_turn:
+        print("X wins!")
+    else:
+        print("O wins!")
+
+
+game_field = []
+for i in range(9):
+    game_field.append(cell_status[0])
+continue_playing = True
+while continue_playing:
+    new_game()
+    command = input("Play again?!(Y/N)")
+    if command == "y" or command == "Y":
+        continue
+    elif command == "n" or command == "N":
+        continue_playing = False
+    else:
+        print("WTF")
+
+
 
 
