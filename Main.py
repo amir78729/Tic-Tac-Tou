@@ -12,6 +12,26 @@ def new_game_field():
         game_field.append(cell_status[0])
 
 
+def check_if_the_game_is_over(bool):
+    if game_field[0] == game_field[1] == game_field[2]:
+        bool = True
+    elif game_field[0] == game_field[4] == game_field[8]:
+        bool = True
+    elif game_field[0] == game_field[3] == game_field[6]:
+        bool = True
+    elif game_field[2] == game_field[5] == game_field[8]:
+        bool = True
+    elif game_field[6] == game_field[7] == game_field[8]:
+        bool = True
+    elif game_field[2] == game_field[4] == game_field[6]:
+        bool = True
+    elif game_field[3] == game_field[4] == game_field[5]:
+        bool = True
+    elif game_field[1] == game_field[4] == game_field[7]:
+        bool = True
+    return bool
+
+
 game_field = []
 new_game_field()
 game_over = False
@@ -30,4 +50,26 @@ while not game_over:
         print_game_field()
         player_one_turn = not player_one_turn
     # now we should check if the game is over or not...
+    if game_field[0] == game_field[1] == game_field[2] != cell_status[0]:
+        game_over = True
+    elif game_field[0] == game_field[4] == game_field[8] != cell_status[0]:
+        game_over = True
+    elif game_field[0] == game_field[3] == game_field[6] != cell_status[0]:
+        game_over = True
+    elif game_field[2] == game_field[5] == game_field[8] != cell_status[0]:
+        game_over = True
+    elif game_field[6] == game_field[7] == game_field[8] != cell_status[0]:
+        game_over = True
+    elif game_field[2] == game_field[4] == game_field[6] != cell_status[0]:
+        game_over = True
+    elif game_field[3] == game_field[4] == game_field[5] != cell_status[0]:
+        game_over = True
+    elif game_field[1] == game_field[4] == game_field[7] != cell_status[0]:
+        game_over = True
+
+if player_one_turn:
+    print("X wins!")
+else:
+    print("O wins!")
+
 
